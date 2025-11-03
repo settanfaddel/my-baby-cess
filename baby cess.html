@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For My Pretty Wifey 💖</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffb6c1, #ff69b4, #ff1493);
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    .fade-in { animation: fadeIn 1.5s ease-in-out; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .floating {
+      position: absolute;
+      width: 60px;
+      animation: float 8s ease-in-out infinite;
+      opacity: 0.8;
+      z-index: 0;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(10deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+
+    .heart {
+      position: fixed;
+      top: -10px;
+      color: #ff69b4;
+      animation: fall linear forwards;
+      z-index: 0;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+
+    input:focus {
+      outline: none;
+      box-shadow: 0 0 10px #ff69b4, 0 0 20px #ffb6c1;
+    }
+
+    .hidden { display: none; }
+
+    /* Love letter style */
+    .letter {
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 0 25px rgba(255,255,255,0.4);
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.7;
+      color: #fff;
+      font-size: 1.2rem;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .love-button {
+      background-color: #ff66b2;
+      padding: 12px 25px;
+      border-radius: 30px;
+      color: white;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(255,255,255,0.4);
+    }
+
+    .love-button:hover {
+      background-color: #ff3385;
+      box-shadow: 0 0 20px rgba(255,255,255,0.6);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center text-white">
+
+  <!-- Floating cute animals -->
+  <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="floating" style="top:10%; left:5%;" alt="bear">
+  <img src="https://cdn-icons-png.flaticon.com/512/616/616430.png" class="floating" style="top:40%; right:10%;" alt="cat">
+  <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="floating" style="bottom:15%; left:20%;" alt="bear">
+  <img src="https://cdn-icons-png.flaticon.com/512/616/616430.png" class="floating" style="bottom:10%; right:25%;" alt="cat">
+
+  <!-- Login Page -->
+  <div id="loginPage" class="fade-in w-full max-w-md p-8 bg-white/30 backdrop-blur-lg rounded-2xl shadow-2xl text-center relative z-10">
+    <h1 class="text-3xl font-bold mb-6 text-white">💖 To my pretty wifey, Cess 💖</h1>
+    <input id="email" type="email" placeholder="Enter your email" class="w-full p-3 mb-4 rounded-lg text-black" />
+    <input id="password" type="password" placeholder="Enter your password" class="w-full p-3 mb-6 rounded-lg text-black" />
+    <button onclick="login()" class="bg-pink-500 hover:bg-pink-600 transition-all px-6 py-3 rounded-xl font-semibold text-white">Login</button>
+    <p id="errorMsg" class="text-red-200 mt-4 hidden">⚠️ Please enter a valid email address</p>
+  </div>
+
+  <!-- Main Page -->
+  <div id="mainPage" class="hidden fade-in w-full p-10 relative z-10 text-center">
+    <h1 class="text-4xl font-extrabold mb-10">Hi my love 💞</h1>
+    <button onclick="showLetter()" class="love-button mb-8">Press it, my love 💌</button>
+
+    <div id="loveLetter" class="letter hidden">
+      <p>My dearest, baby cess,</p>
+      <p>
+        From the moment you came into my life, everything became softer, brighter, and more beautiful.  
+        Your smile lights up my world, and your love fills every corner of my heart.  
+        No words can ever describe how much you mean to me — you’re my comfort, my peace, and my forever.
+      </p>
+      <p>
+        Every day with you feels like a sweet dream I never want to wake up from.  
+        I love you more than words, more than stars, more than anything this world could ever offer.  
+        You’re my one and only, today, tomorrow, and always. 💖
+      </p>
+      <p class="mt-6 italic">— With all my love, <strong>Baby Kes</strong> 💋</p>
+    </div>
+
+    <div class="mt-10">
+      <button onclick="logout()" class="bg-white text-pink-700 px-5 py-2 rounded-xl font-semibold hover:bg-pink-200">Logout</button>
+    </div>
+  </div>
+
+  <script>
+    // Login function: any password accepted if email looks valid
+    function login() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const errorMsg = document.getElementById('errorMsg');
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (emailPattern.test(email)) {
+        document.getElementById('loginPage').classList.add('hidden');
+        document.getElementById('mainPage').classList.remove('hidden');
+        errorMsg.classList.add('hidden');
+      } else {
+        errorMsg.classList.remove('hidden');
+      }
+    }
+
+    function logout() {
+      document.getElementById('mainPage').classList.add('hidden');
+      document.getElementById('loginPage').classList.remove('hidden');
+      document.getElementById('loveLetter').classList.add('hidden');
+    }
+
+    function showLetter() {
+      document.getElementById('loveLetter').classList.remove('hidden');
+    }
+
+    // Floating hearts animation
+    const hearts = ["💖","💗","💞","💕","💓","💘"];
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = hearts[Math.floor(Math.random()*hearts.length)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (Math.random()*20 + 10) + "px";
+      heart.style.animationDuration = (Math.random()*3 + 4) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 7000);
+    }, 300);
+  </script>
+
+</body>
+</html>
